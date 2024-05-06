@@ -1,6 +1,6 @@
 import { CourseCard } from "../../CourseCard";
 
-const dati = [
+const corsi = [
     {
         nomeCorso: "Java",
         descrizioneBreve: "corso di Java",
@@ -47,7 +47,7 @@ export function Courses() {
 
             <div className="container">
                 <div className="row row-cols-1 row-cols-md-3 g-4">
-                    {dati.map((corso, index) => (
+                    {corsi.map((corso, index) => (
                         <div className="col" key={index}>
                             <CourseCard {...corso} />
                         </div>
