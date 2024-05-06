@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-export function SignInSignUp() {
+export function LoginRegister() {
     return (
         <div className="ml-auto">
             <NavLink className="btn btn-outline-primary" activeClassName="active" to="/login">Login</NavLink>
