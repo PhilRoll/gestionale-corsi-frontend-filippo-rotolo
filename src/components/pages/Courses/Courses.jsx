@@ -36,14 +36,24 @@ const dati = [
 
 export function Courses() {
     return (
-        <div className="container">
-            <div className="row row-cols-1 row-cols-md-3 g-4">
-                {dati.map((c, index) => (
-                    <div className="col" key={index}>
-                        <CourseCard {...c} />
-                    </div>
-                ))}
+        <>
+            <div className="container">
+                <div className="jumbotron">
+                    <h1 className="display-4">I nostri corsi!</h1>
+                    <p className="lead">Scopri i nostri fantastici corsi e inizia il tuo viaggio verso nuove conoscenze e opportunità!</p>
+                    <hr className="my-4" />
+                </div>
             </div>
-        </div>
+
+            <div className="container">
+                <div className="row row-cols-1 row-cols-md-3 g-4">
+                    {dati.map((c, index) => (
+                        <div className="col" key={index}>
+                            <CourseCard {...c} />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </>
     );
 }
