@@ -47,13 +47,15 @@ export function Courses() {
 
             <div className="container">
                 <div className="row row-cols-1 row-cols-md-3 g-4">
-                    {dati.map((c, index) => (
+                    {dati.map((corso, index) => (
                         <div className="col" key={index}>
-                            <CourseCard {...c} />
+                            <CourseCard {...corso} />
                         </div>
                     ))}
                 </div>
+                <hr className="my-4" />
             </div>
+            
         </>
     );
 }
