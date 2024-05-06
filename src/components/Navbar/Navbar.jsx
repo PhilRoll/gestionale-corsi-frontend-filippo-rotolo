@@ -1,26 +1,33 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { HeaderButton } from './HeaderButton';
+import { HeaderButton } from "../Buttons/HeaderButton";
 
 export function Navbar() {
+    // Definire uno stato per gestire l'apertura/chiusura del menu
+    const [isMenuOpen, setMenuOpen] = useState(false);
+
+    // Funzione per gestire la chiusura del menu quando si seleziona un elemento
+    const handleMenuClose = () => {
+        setMenuOpen(false);
+    };
+
     return (
-        <nav className="navbar navbar-expand-md navbar-light bg-light fixed-top">
+        <nav className="navbar navbar-expand-lg bg-body-tertiary sticky-top">
             <div className="container-fluid">
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
+                <button
+                    className="navbar-toggler"
+                    type="button"
+                    onClick={() => setMenuOpen(!isMenuOpen)} // Toggle per aprire/chiusura del menu
+                >
+                    <span className="navbar-toggler-icon" />
                 </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
+                <div className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`} id="navbarSupportedContent"> {/* Se il menu è aperto, aggiungo la classe "show" */}
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item">
-                            <NavLink className="nav-link" activeClassName="active" exact to="/">Home</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" activeClassName="active" to="/courses">Courses</NavLink>
-                        </li>
+                        <NavLink className="nav-item nav-link" to="" aria-current="page" onClick={handleMenuClose}>Home</NavLink>
+                        <NavLink className="nav-item nav-link" to="/courses" aria-current="page" onClick={handleMenuClose}>Corsi</NavLink>
                     </ul>
                 </div>
-                <div className="d-flex align-items-center">
-                    <HeaderButton />
-                </div>
+                <HeaderButton />
             </div>
         </nav>
     );

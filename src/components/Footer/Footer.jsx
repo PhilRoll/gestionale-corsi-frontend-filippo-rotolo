@@ -2,26 +2,17 @@ import { NavLink } from 'react-router-dom';
 
 export function Footer() {
     return (
-        <footer className="footer mt-auto py-3 bg-light">
-            <div className="container-fluid">
-                <div className="row justify-content-center">
-                    <div className="col-lg-6 text-center">
-                        <ul className="nav justify-content-center">
-                            <li className="nav-item">
-                                <NavLink className="nav-link" activeClassName="active" exact to="/">Home</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" activeClassName="active" to="/courses">Corsi</NavLink>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="row justify-content-center">
-                    <div className="col-lg-6 text-center">
-                        <p>&copy; {new Date().getFullYear()} Il mio Sito</p>
-                    </div>
-                </div>
-            </div>
+        <footer className="py-3 my-4">
+            <ul className="nav justify-content-center border-bottom pb-3 mb-3">
+                <li className="nav-item">
+                    <NavLink to="" className="nav-link px-2 text-muted">Home</NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink to="/courses" className="nav-link px-2 text-muted">Corsi</NavLink>
+                </li>
+            </ul>
+            <p className="text-center text-muted">© {new Date().getFullYear()} Il Mio Sito</p>
         </footer>
+
     );
 }

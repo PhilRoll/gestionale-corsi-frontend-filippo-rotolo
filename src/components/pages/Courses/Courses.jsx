@@ -37,7 +37,7 @@ const corsi = [
 export function Courses() {
     return (
         <>
-            <div className="container">
+            <div className="container-fluid">
                 <div className="jumbotron">
                     <h1 className="display-4">I nostri corsi!</h1>
                     <p className="lead">Scopri i nostri fantastici corsi e inizia il tuo viaggio verso nuove conoscenze e opportunità!</p>
@@ -45,8 +45,8 @@ export function Courses() {
                 </div>
             </div>
 
-            <div className="container">
-                <div className="row row-cols-1 row-cols-md-3 g-4">
+            <div className="container-fluid">
+                <div className="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
                     {corsi.map((corso, index) => (
                         <div className="col" key={index}>
                             <CourseCard {...corso} />
@@ -55,7 +55,6 @@ export function Courses() {
                 </div>
                 <hr className="my-4" />
             </div>
-            
         </>
     );
 }
