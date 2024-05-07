@@ -1,21 +1,22 @@
+import React, { useContext, useState } from "react";
 import { AuthContext } from "./AuthContext";
-import { useState } from "react";
-import React from "react";
-
 
 export function AuthContextProvider({ children }) {
-  // Stato per gestire le informazioni sull'utente
+  const [isLogged, setIsLogged] = useState(false);
   const [user, setUser] = useState({
-    nome: "",
-    cognome: "",
-    email: "",
-    isLogged: false,
-    ruolo: ""
+      nome: "",
+      cognome: "",
+      email: "",
+      ruolo: ""
   });
 
+  const handleLogin = () => {
+      setIsLogged(true);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      {children}
-    </AuthContext.Provider>
+      <AuthContext.Provider value={{ isLogged, user, handleLogin }}>
+          {children}
+      </AuthContext.Provider>
   );
 }

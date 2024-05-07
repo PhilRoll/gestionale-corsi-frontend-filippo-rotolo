@@ -9,7 +9,6 @@ export function UserProfile(){
     const [email, setEmail] = useState('');
 
     useEffect(() => {
-        // token dal cookie
         const token = Cookies.get('token');
 
         if (token) {
@@ -25,14 +24,14 @@ export function UserProfile(){
     return (
         <div className="container">
             <section className="mt-5">
-                <h2>Informazioni Utente</h2>
+                <h2>Profilo di {nome} {cognome}</h2>
                 <div className="card">
                     <div className="card-body">
                         <h5 className="card-title">Informazioni personali</h5>
                         <p className="card-text"><strong>Nome:</strong> {nome}</p>
                         <p className="card-text"><strong>Cognome:</strong> {cognome}</p>
                         <p className="card-text"><strong>Email:</strong> {email}</p>
-                        <Link to="/modifica-profilo" className="btn btn-primary mt-3">Modifica Profilo</Link>
+                        <Link to="/user/update" className="btn btn-primary mt-3">Modifica Profilo</Link>
                     </div>
                 </div>
             </section>
@@ -42,7 +41,7 @@ export function UserProfile(){
                     <div className="card-body">
                         <h2 className="card-title">Corsi Iscritti</h2>
                         <ul className="list-group list-group-flush">
-                            
+                            {/*TO-DO funzione map sui corsi */}
                         </ul>
                     </div>
                 </div>
