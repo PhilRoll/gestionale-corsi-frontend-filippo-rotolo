@@ -5,6 +5,7 @@ import { NotFound } from "../pages/NotFound/NotFound";
 import { createBrowserRouter } from "react-router-dom";
 import { Login } from "../pages/Login/Login";
 import { Registration } from "../pages/Registration/Registration";
+import { UserProfile } from "../pages/UserProfile/UserProfile";
 
 export const router = createBrowserRouter([
     {
@@ -24,6 +25,15 @@ export const router = createBrowserRouter([
             {
               path:"/register",
               element: <Registration/>
+            },
+            {
+              path:"/user",
+              children:[
+                {
+                  path:"profile",
+                  element: <UserProfile/>
+                }
+              ]
             },
             {
               path: "/courses/",
