@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { UserLogin } from "../../services/RESTservice";
 import { Navigate } from "react-router-dom";
 import Cookies from 'js-cookie'; // Importa il modulo js-cookie
+import { AuthContext } from "../contexts/AuthContext/AuthContext";
+import { jwtDecode } from "jwt-decode";
 
 export function LoginForm() {
     //inizializzazione dello stato del form
+
+    const {user, setUser} = useContext(AuthContext);
+
     const [formData, setFormData] = useState({
         email: "",
         password: ""
@@ -38,11 +43,26 @@ export function LoginForm() {
 
             //lettura del token
             const data = await response.json();
+
             console.log(data);
+
             const JWTtoken = data.token;
             //salvataggio del token sui cookies
-            Cookies.set('token', JWTtoken,{expires:7}); //nome "token, scadenza 7gg"
+            Cookies.set('token', JWTtoken,{expires: new Date(data.ttl)}); 
+
+            //decodificare il token jwtDecode, 
+            let claims = jwtDecode(JWTtoken);
+            console.log(claims);
+
+            setUser({
+                nome: claims.nome,
+                cognome: claims.cognome,
+                email: claims.email,
+                ruoli: claims.ruoli,
+                isLogged: true
+            });
         } 
+
         else {
             console.log(response.status)
             setErrorFlag(true);

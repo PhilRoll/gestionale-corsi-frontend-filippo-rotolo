@@ -6,10 +6,14 @@ import { createBrowserRouter } from "react-router-dom";
 import { Login } from "../pages/Login/Login";
 import { Registration } from "../pages/Registration/Registration";
 import { UserProfile } from "../pages/UserProfile/UserProfile";
+import { AuthContextProvider } from "../contexts/AuthContext/AuthContextProvider";
+import { ProtectedRoute } from "./ProtectedRoute";
+import { AllUsers } from "../pages/AllUsers/AllUsers";
+import { CreateCouse } from "../pages/CreateCourse/CreateCourse";
 
 export const router = createBrowserRouter([
     {
-      element: <Layout/>,
+      element: <AuthContextProvider><Layout/></AuthContextProvider>,
       children:[
         {
           path: "/",
@@ -32,6 +36,10 @@ export const router = createBrowserRouter([
                 {
                   path:"profile",
                   element: <UserProfile/>
+                },
+                {
+                  path:"allusers",
+                  element: <ProtectedRoute><AllUsers/></ProtectedRoute>
                 }
               ]
             },
@@ -41,6 +49,10 @@ export const router = createBrowserRouter([
                 {
                   path:"",
                   element: <Courses />
+                },
+                {
+                  path:"create",
+                  element: <ProtectedRoute><CreateCouse/></ProtectedRoute>
                 }
               ]
             }

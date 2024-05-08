@@ -1,40 +1,30 @@
+import { GetAllCourses } from "../../../services/RESTservice";
 import { CourseCard } from "../../CourseCard";
-
-const corsi = [
-    {
-        nomeCorso: "Java",
-        descrizioneBreve: "corso di Java",
-        descrizioneCompleta: "descrizione lunga del corso di Java",
-        durata: "200"
-    },
-    {
-        nomeCorso: "Python",
-        descrizioneBreve: "corso di Python",
-        descrizioneCompleta: "descrizione lunga del corso di Python",
-        durata: "150"
-    },
-    {
-        nomeCorso: "JavaScript",
-        descrizioneBreve: "corso di JavaScript",
-        descrizioneCompleta: "descrizione lunga del corso di JavaScript",
-        durata: "180"
-    },
-    {
-        nomeCorso: "React",
-        descrizioneBreve: "corso di React",
-        descrizioneCompleta: "descrizione lunga del corso di React",
-        durata: "120"
-    },
-    {
-        nomeCorso: "HTML & CSS",
-        descrizioneBreve: "corso di HTML & CSS",
-        descrizioneCompleta: "descrizione lunga del corso di HTML & CSS",
-        durata: "100"
-    }
-];
+import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 
 
 export function Courses() {
+
+    const [corsi, setCorsi] = useState([]);
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const listUsers = await GetAllCourses(Cookies.get('token'));
+                setCorsi(listUsers);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        console.log(corsi)
+    }, [corsi])
+
     return (
         <>
             <div className="container-fluid">

@@ -1,11 +1,15 @@
 import { Logout } from "./Logout";
 import { LoginRegister } from "./LoginRegister";
-import Cookies from 'js-cookie'; // Importa il modulo js-cookie
+import { useContext } from 'react';
+import { AuthContext } from '../contexts/AuthContext/AuthContext';
 
 export function HeaderButton() {
+
+    const {user} = useContext(AuthContext);
+
     return (
         <>
-            {Cookies.get('token') ? <Logout /> : <LoginRegister />}
+            {user.isLogged ? <Logout /> : <LoginRegister />}
         </>
     );
 }
