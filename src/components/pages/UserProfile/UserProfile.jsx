@@ -8,17 +8,17 @@ import { UserCourses } from '../../Sections/UserCourses';
 import { DiscoverCourses } from '../../Sections/DiscoverCourses';
 
 export function UserProfile() {
-    // Dal contesto
+    //user dal contesto
     const { user } = useContext(AuthContext);
 
-    // Stati del componente
+    //stati del componente
     const [nome, setNome] = useState('');
     const [cognome, setCognome] = useState('');
     const [email, setEmail] = useState('');
     const [ruoli, setRuoli] = useState([]); 
     const [corsi, setCorsi] = useState([]); 
 
-    // Effect per ottenere le informazioni dell'utente
+    //informazioni dell'utente
     useEffect(() => {
         if (user) {
             setNome(user.nome);
@@ -28,7 +28,7 @@ export function UserProfile() {
     }, [user]);
     
 
-    // Effect per ottenere i ruoli e i corsi dell'utente
+    //effect per ottenere i ruoli e i corsi dell'utente
     useEffect(() => {
         const fetchData = async () => {
             if (email) {
@@ -42,7 +42,7 @@ export function UserProfile() {
     }, [email]);
 
     return (
-        <div className="container">
+        <div className="container my-5">
             <UserInfo nome={nome} cognome={cognome} email={email} />
             <UserRoles ruoli={ruoli} />
             <UserCourses corsi={corsi} />
