@@ -3,7 +3,7 @@ import { RegistrationForm } from '../../Forms/RegistrationForm';
 import { GetAllUsers } from '../../../services/RESTservice';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
-import { UserCard } from '../../UserCard';
+import { UserCard } from '../../Cards/UserCard';
 
 
 export function AllUsers() {

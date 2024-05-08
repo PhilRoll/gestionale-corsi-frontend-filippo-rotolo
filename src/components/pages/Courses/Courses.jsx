@@ -1,5 +1,5 @@
 import { GetAllCourses } from "../../../services/RESTservice";
-import { CourseCard } from "../../CourseCard";
+import { CourseCard } from "../../Cards/CourseCard";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 

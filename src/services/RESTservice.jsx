@@ -144,3 +144,19 @@ export async function GetAllCategories() {
     const data = await response.json();
     return data;
 }
+
+
+// fetch info singolo utente (utile per visualizzare la lista dei corsi di un utente)
+export async function GetUserInfoByEmail(email) {
+   const response = await fetch(`http://localhost:8080/api/utente/infoutente/${email}`, {
+        mode: "cors",
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer token_value"
+        }
+    });
+
+    const data = await response.json();
+    return data;
+}

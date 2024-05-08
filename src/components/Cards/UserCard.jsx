@@ -1,22 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { DeleteUser } from '../services/RESTservice';
+import { DeleteUser } from '../../services/RESTservice';
 
 export function UserCard({ nome, cognome, email, ruoli, corsi }) {
+    const [deleted, setDeleted] = useState(false);
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(nome, cognome, email, ruoli, corsi);
-    }, [])
+    }, []);
 
     const handleDeleteUser = async () => {
-        const response = await DeleteUser(email);
-        if (response.ok) {
-            // Aggiorna lo stato o esegui altre azioni necessarie dopo l'eliminazione dell'utente
-            console.log('Utente eliminato con successo');
-        } else {
-            console.error('Errore durante l\'eliminazione dell\'utente');
+        const confirmDelete = window.confirm("Sei sicuro di voler eliminare questo utente?");
+        if (confirmDelete) {
+            const response = await DeleteUser(email);
+            if (response.ok) {
+                // Aggiorna lo stato o esegui altre azioni necessarie dopo l'eliminazione dell'utente
+                console.log('Utente eliminato con successo');
+                setDeleted(true);
+            } else {
+                console.error('Errore durante l\'eliminazione dell\'utente');
+            }
         }
     };
+
+    if (deleted) {
+        return null; // Se l'utente è stato eliminato, non renderizzare più il componente
+    }
 
     return (
         <div className="card">
